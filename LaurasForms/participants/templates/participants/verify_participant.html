@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify Participant</title>
+    <link rel="stylesheet" href="{% static 'css/participants.css' %}">
+</head>
+<body>
+    <div>
+        <a href="{% url 'verify_participant' pk=participant.pk %}" class="top-menu"></a>
+        <h1><a href=""/>New Participant Addition</h1>
+    </div>
+    <div>
+        <div>
+            <section class="name">
+                <p>Name: {{ participant.participant_name|stringformat:"50s" }}
+            </section>
+            <section class="info">
+                <ul>
+                    <li>Age:                     {{ participant.participant_age }} </li>
+                    <li>Siblings:                {{ participant.participant_siblings }} </li>
+                    <li>Environmental Exposures: {{ participant.env_exposures}} </li>
+                    <li>Genetic Mutations:       {{ participant.gen_mutations }} </li>
+                    <li>Review Status:           {{ participant.rev_status }} </li>
+                </ul>
+            </section>
+            <section class="revStatus">
+                {% if participant.rev_status == 'Reviewed - Accepted' %}
+                    <nav class="Green"><a href = ""> {{ p.rev_status }} </a></nav>
+                {% else %}
+                    {% if participant.rev_status == 'Reviewed - Not Accepted' %}
+                        <nav class="Red"><a href = ""> {{ p.rev_status }} </a></nav>
+                    {% else %}
+                        <nav><a href = ""> {{ participant.rev_status }} </a></nav>
+                    {% endif %}
+                {% endif %}
+            </section>
+        </div>
+    </div>
+</body>
+</html>

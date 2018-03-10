@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 # from django.http import HttpResponseRedirect
 # from .forms import ParticipantInfoForm
 from .models import ParticipantInfo
 from .forms import AddParticipantForm
 from django.http import HttpResponseRedirect
 from django.utils import timezone
+from django.shortcuts import redirect
 
 # from django.views import generic
 #
@@ -33,28 +34,68 @@ from django.utils import timezone
 #     # template_name
 #
 
+# def verify_participant(request, pk):
+#     # participant = ParticipantInfo.objects.filter(pk=pk)
+#     participant = get_object_or_404(ParticipantInfo, pk=pk)
+#     return render(request, 'participants/verify_participant.html', {'participant': participant})
+
+
+#    # def verify_participant(request, pk):
+#    #     # participant = ParticipantInfo.objects.filter(pk=pk)
+#    #     # participant = get_object_or_404(ParticipantInfo, pk=pk)
+#    #     if request.method == "POST":
+#    #         form = VerifyParticipantForm(request.POST, instance=ParticipantInfo)
+#    #         if form.is_valid():
+#    #             participant = form.save(commit=False)
+#    #             participant.author = request.user
+#    #             participant.published_date = timezone.now()
+#    #             participant.save()
+#    #             return redirect('verify_participant', pk=pk)
+#    #         else:
+#    #             form = VerifyParticipantForm(instance=ParticipantInfo)
+#    #     return render(request, 'participants/verify_participant.html', {'pk': pk})
+#    #
+#    #     # return render(request, 'participants/verify_participant.html', {'pk': participant.pk})
+
 
 def add_participant(request):
     if request.method == "POST":
         form = AddParticipantForm(request.POST)
-        print("AddParticipantForm with args")
         if form.is_valid():
-            p = form.save(commit=False)
-            p.name = request.Name
-            p.age = request.Age
-            p.date_created = timezone.now
-            return HttpResponseRedirect('/thanks/')
+            ParticipantInfo = form.save(commit=False)
+            ParticipantInfo.name = request.user
+            ParticipantInfo.date_created = timezone.now()
+            ParticipantInfo.save()
+            return redirect('list_participants')
+
+            # return redirect('verify_participant', pk=ParticipantInfo.pk)
+        print("in views.add_participant POST")
     else:
         form = AddParticipantForm()
-        print("AddParticipantForm with no args")
-    # participant = ParticipantInfo.objects.create(
-    #     participant_name=request.participant_name,
-    #     participant_age=request.participant_age,
-    #     participant_siblings=request.participant_sibs,
-    #     env_exposures=request.env_exposures,
-    #     gen_mutations=request.gen_mutations,
-    #     rev_status=request.rev_status)
+        print("in else of views.add_participant")
     return render(request, 'participants/add_participant.html', {'form': form})
+
+# def add_participant(request):
+#     if request.method == "POST":
+#         form = AddParticipantForm(request.POST)
+#         print("AddParticipantForm with args")
+#         if form.is_valid():
+#             p = form.save(commit=False)
+#             p.name = request.Name
+#             p.age = request.Age
+#             p.date_created = timezone.now
+#             return HttpResponseRedirect('/thanks/')
+#     else:
+#         form = AddParticipantForm()
+#         print("AddParticipantForm with no args")
+#     # participant = ParticipantInfo.objects.create(
+#     #     participant_name=request.participant_name,
+#     #     participant_age=request.participant_age,
+#     #     participant_siblings=request.participant_sibs,
+#     #     env_exposures=request.env_exposures,
+#     #     gen_mutations=request.gen_mutations,
+#     #     rev_status=request.rev_status)
+#     return render(request, 'participants/add_participant.html', {'form': form})
 
 
 def list_participants(request):

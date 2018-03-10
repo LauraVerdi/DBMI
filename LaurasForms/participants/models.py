@@ -7,7 +7,7 @@ class ParticipantInfo(models.Model):
     participant_name = models.CharField(max_length=50)
     participant_age = models.PositiveIntegerField()
     participant_siblings = models.CharField(
-        max_length=2,
+        max_length=3,
         choices = (('Yes', 'Yes'),
                    ('No', 'No')),
         default = 'No',

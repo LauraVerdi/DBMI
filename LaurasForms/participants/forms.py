@@ -10,11 +10,23 @@ from .models import ParticipantInfo
 YES_OR_NO_CHOICE = ('YES', 'NO')
 REV_STATUS = ('Not Reviewed', 'Reviewed - Approved', 'Reviewed - Not Approved')
 
+class AddParticipantForm(forms.ModelForm):
 
-class AddParticipantForm(forms.Form):
-    Name = forms.CharField(widget=forms.TextInput())
-    # Name = forms.CharField(widget=forms.TextInput(attrs={'class': 'special'}))
-    Age = forms.IntegerField(widget=forms.NumberInput())
+    class Meta:
+        model = ParticipantInfo
+        fields = ('participant_name', 'participant_age', 'participant_siblings', 'env_exposures', 'gen_mutations', 'rev_status')
+
+
+# class VerifyParticipantForm(forms.ModelForm):
+#
+#     class Meta:
+#         model = ParticipantInfo
+#         fields = ('participant_name', 'participant_age', 'participant_siblings', 'env_exposures', 'gen_mutations', 'rev_status')
+
+# class AddParticipantForm(forms.Form):
+#     Name = forms.CharField(widget=forms.TextInput())
+#     # Name = forms.CharField(widget=forms.TextInput(attrs={'class': 'special'}))
+#     Age = forms.IntegerField(widget=forms.NumberInput())
     # Sibs = forms.ChoiceField(
     #     widget=forms.RadioSelect,
     #     choices=YES_OR_NO_CHOICE

@@ -1,21 +1,23 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Add Participant</title>
+    <link rel="stylesheet" href="{% static 'css/participants.css' %}">
 </head>
 <body>
     <div>
-        <!--<a href="{% url 'add_participant' %}" class="top-menu"><span class=glyphicon glyphicon-plus"></span></a>-->
+        <a href="{% url 'add_participant' %}" class="top-menu"></a>
         <h1><a href=""/>New Participant Addition</h1>
     </div>
-
-    <div class="content container">
+    <div>
         {% block content %}
-            <form method="POST">{% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="save btn btn-default">Save</button>
-            </form>
+        <form method="POST" class="add_participant">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
         {% endblock %}
     </div>
 </body>

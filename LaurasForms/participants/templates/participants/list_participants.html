@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<!--{% load staticfiles %}-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List Participants</title>
+    <link rel="stylesheet" href="{% static 'css/participants.css' %}">
+</head>
+<body>
+    <div>
+        <h1><a href="/">All Registered Participants</a></h1>
+    </div>
+    <div>
+        {% for p in participant %}
+        <div>
+            <section class="name">
+                <p>Name: {{ p.participant_name|stringformat:"50s" }}
+            </section>
+            <section class="info">
+                <ul>
+                    <li>Age:                     {{ p.participant_age }} </li>
+                    <li>Siblings:                {{ p.participant_siblings }} </li>
+                    <li>Environmental Exposures: {{ p.env_exposures}} </li>
+                    <li>Genetic Mutations:       {{ p.gen_mutations }} </li>
+                    <li>Review Status:           {{ p.rev_status }} </li>
+                </ul>
+            </section>
+            <section class="revStatus">
+                {% if p.rev_status == 'Reviewed - Accepted' %}
+                    <nav class="Green"><a href = ""> {{ p.rev_status }} </a></nav>
+                {% else %}
+                    <nav><a href = ""> {{ p.rev_status }} </a></nav>
+                {% endif %}
+            </section>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

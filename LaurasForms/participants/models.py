@@ -1,9 +1,11 @@
 from django.db import models
 from django.utils import timezone
 
+rev_status_choices = [('Not Reviewed', 'Not Reviewed'),
+                      ('Reviewed - Accepted', 'Reviewed - Accepted'),
+                      ('Reviewed - Not Accepted', 'Reviewed - Not Accepted')]
 
 class ParticipantInfo(models.Model):
-    # participant_id = models.ForeignKey('unknown', editable=False, on_delete=models.CASCADE)
     participant_name = models.CharField(max_length=50)
     participant_age = models.PositiveIntegerField()
     participant_siblings = models.CharField(
@@ -14,11 +16,10 @@ class ParticipantInfo(models.Model):
     )
     env_exposures = models.TextField()
     gen_mutations = models.TextField()
+    # rev_status = models.CharField(ReviewStatus)
     rev_status = models.CharField(
         max_length=23,
-        choices = (('Not Reviewed', 'Not Reviewed'),
-                   ('Reviewed - Accepted', 'Reviewed - Accepted'),
-                   ('Reviewed - Not Accepted', 'Reviewed - Not Accepted')),
+        choices = rev_status_choices,
         default = 'Not Reviewed',
     )
     date_created = models.DateTimeField(default=timezone.now)
@@ -39,8 +40,9 @@ class ParticipantInfo(models.Model):
         self.save()
 
 
-# class ParticipantsList(models.Model):
-#     participant = models.ForeignKey(ParticipantInfo, on_delete=models.CASCADE)
-#
-#     def change_review_status(self):
-#         pass
+class ReviewStatus(models.Model):
+    rev_status = models.CharField(
+        max_length=23,
+        choices = rev_status_choices,
+        default = 'Not Reviewed',
+    )

@@ -1,5 +1,5 @@
 from django import forms
-from .models import ParticipantInfo
+from .models import ParticipantInfo, ReviewStatus, rev_status_choices
 
 # class ParticipantForm(forms.ModelForm):
 #
@@ -7,8 +7,8 @@ from .models import ParticipantInfo
 #         model = ParticipantInfo
 #         fields = ('Name', 'Age', 'Sibs')
 #
-YES_OR_NO_CHOICE = ('YES', 'NO')
-REV_STATUS = ('Not Reviewed', 'Reviewed - Approved', 'Reviewed - Not Approved')
+# YES_OR_NO_CHOICE = ('YES', 'NO')
+# REV_STATUS = ('Not Reviewed', 'Reviewed - Approved', 'Reviewed - Not Approved')
 
 class AddParticipantForm(forms.ModelForm):
 
@@ -16,6 +16,21 @@ class AddParticipantForm(forms.ModelForm):
         model = ParticipantInfo
         fields = ('participant_name', 'participant_age', 'participant_siblings', 'env_exposures', 'gen_mutations', 'rev_status')
 
+class ReviewStatusForm(forms.ModelForm):
+
+    def __init__(self, *args, **kargs):
+        super(ReviewStatusForm, self).__init__(*args, **kargs)
+
+    class Meta:
+        model = ReviewStatus
+        fields = '__all__'
+        # fields = rev_status_choices
+        # print("fields=", fields)
+        # fields = []
+        # for i in rev_status_choices:
+        #     fields.append(i[0])
+
+    # status = forms.ChoiceField(choices=rev_status_choices)
 
 # class VerifyParticipantForm(forms.ModelForm):
 #

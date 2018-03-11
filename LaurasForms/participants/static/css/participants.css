@@ -5,28 +5,6 @@ h1 {
 body {
     padding-left: 15px;
 }
-.name{
-    background-color: #7e7a12
-	width: 150px;
-	margin-right: 2%;
-	display: inline-block;
-	float: left;
-}
-.name p{
-    width: 150px;
-}
-.info{
-    background-color: yellow
-	width: 45%;
-	margin-right: 2%;
-	display: inline-block;
-}
-.revStatus{
-	width: 20%;
-	margin-right: 2%;
-	display: inline-block;
-	float: right;
-}
 nav{
 	font-variant: small-caps;
 	font-size: 100%;
@@ -37,7 +15,7 @@ nav a{
     width: 75px;
     text-align: center;
     text-decoration: none;
-    padding: 20px 10px;
+    padding: 7px 10px;
     border-radius: 5px;
     margin: 2%;
     background-color: purple;
@@ -48,4 +26,58 @@ nav a{
 }
 .Red a{
     background-color: red;
+}
+
+table{
+  border-collapse: separate;
+  border-spacing: 2px;
+  margin-top: 10px;
+  margin-left: 50px;
+}
+
+th{
+  background-color: purple;
+  color: #ffffff;
+  font-family: Arial, san-serif;
+  font-size: small;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 2px solid #25D12A;
+}
+th:first-child{
+  text-align: left;
+  border-top-left-radius: 5px;
+}
+th:last-child{
+  border-top-right-radius: 5px;
+}
+
+td{
+  background-color: #CFFDD1;
+  color: #686B68;
+  font-family: arial, san-serif;
+  font-size: small;
+  padding: 10px;
+  text-align: center;
+  vertical-align: top;
+  opacity: .8;
+}
+.left {
+  background-color: #CFFDD1;
+  color: #686B68;
+  font-family: arial, san-serif;
+  font-size: small;
+  padding: 10px;
+  text-align: left;
+  opacity: .8;
+}
+td:first-child{
+  text-align: left;
+  vertical-align: top;
+}
+td:hover{
+  opacity: 1;
+}
+tr:hover{
+  opacity: 1;
 }

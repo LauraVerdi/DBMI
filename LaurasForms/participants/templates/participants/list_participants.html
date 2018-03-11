@@ -10,34 +10,91 @@
     <div>
         <h1><a href="/">All Registered Participants</a></h1>
     </div>
-    <div>
+    <!--<table style="border:1px solid green">-->
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Siblings</th>
+            <th>Environmental Exposures</th>
+            <th>Genetic Mutations</th>
+            <th>Review Status</th>
+        </tr>
         {% for p in participant %}
-        <div>
-            <section class="name">
-                <p>Name: {{ p.participant_name|stringformat:"50s" }}
-            </section>
-            <section class="info">
-                <ul>
-                    <li>Age:                     {{ p.participant_age }} </li>
-                    <li>Siblings:                {{ p.participant_siblings }} </li>
-                    <li>Environmental Exposures: {{ p.env_exposures}} </li>
-                    <li>Genetic Mutations:       {{ p.gen_mutations }} </li>
-                    <li>Review Status:           {{ p.rev_status }} </li>
-                </ul>
-            </section>
-            <section class="revStatus">
-                {% if p.rev_status == 'Reviewed - Accepted' %}
-                    <nav class="Green"><a href = ""> {{ p.rev_status }} </a></nav>
-                {% else %}
-                    {% if p.rev_status == 'Reviewed - Not Accepted' %}
-                        <nav class="Red"><a href = ""> {{ p.rev_status }} </a></nav>
+            <tr>
+                <td> {{ p.participant_name }} </td>
+                <td> {{ p.participant_age }} </td>
+                <td> {{ p.participant_siblings }} </td>
+                <td class="left">
+                    {% for line in p.env_exposures.splitlines %}
+                        {{ line }} <br>
+                    {% endfor %}
+                </td>
+                <!--<td style="white-space:pre-wrap; word-wrap:break-word">-->
+                <td class="left">
+                    {% for line in p.gen_mutations.splitlines %}
+                        {{ line }} <br>
+                    {% endfor %}
+                </td>
+                <td>
+                    <form method="POST">{% csrf_token %}
+                        <label for="rev_status_choices">foo</label>
+                        <!--<select type="text" id="rev_status_choices" name="rev_status_choices">-->
+                        <select id="rev_status_choices" name="rev_status_choices">
+                            {% for fields, displayable in models.ReviewStatus.review_status_choices %}
+                                <option> {{fields}} </option>
+                            {% endfor %}
+                            <!--<option selected>Not Reviewed</option>-->
+                            <!--<option>Reviewed - Accepted</option>-->
+                            <!--<option>Reviewed - Not Accepted</option>-->
+                        </select>
+                        <input type="submit" value = "Submit!">
+                    </form>
+                </td>
+                <td>
+                    {% if p.rev_status == 'Reviewed - Accepted' %}
+                        <nav class="Green"><a href = ""> {{ p.rev_status }} </a></nav>
                     {% else %}
-                        <nav><a href = ""> {{ p.rev_status }} </a></nav>
+                        {% if p.rev_status == 'Reviewed - Not Accepted' %}
+                            <nav class="Red"><a href = ""> {{ p.rev_status }} </a></nav>
+                        {% else %}
+                            <nav><a href = ""> {{ p.rev_status }} </a></nav>
+                        {% endif %}
                     {% endif %}
-                {% endif %}
-            </section>
-        </div>
+                </td>
+            </tr>
         {% endfor %}
-    </div>
+    </table>
 </body>
 </html>
+                <!--<td>-->
+                    <!--<div class="dropdown">-->
+                        <!--{% for field, value in form.fields.rev_status_choices.choices %}-->
+                        <!--<option value="{{field}}"> {{ value }} </option>-->
+                        <!--{% endfor %}-->
+                    <!--</div>-->
+                <!--</td>-->
+                <!--<td>-->
+                    <!--<option value="Start"></option>-->
+                    <!--{% for field, displayvalue in forms.fields.rev_status_choices.choices %}-->
+                    <!--<option value="{{ field }}"> {{ displayvalue }} </option>-->
+                    <!--{% endfor %}-->
+                <!--</td>-->
+
+                    <!--{% for choice in form.ReviewStatusForm.field.choices %}-->
+                        <!--<div class="dropdown", name="rev_status_choices">-->
+                            <!--{% for value, displayable in form.ReviewStatusForm.choices %}-->
+                                <!--<option value="{{value}}"> {{ displayable }} </option>-->
+                            <!--{% endfor %}-->
+                        <!--</div>-->
+                    <!--{% endfor %}-->
+
+                    <!--<label>Jingle</label>-->
+                    <!--<select name="rev_status_choices">-->
+                        <!--&lt;!&ndash;class="selectpicker" data-title="Select Status" data-style="btn-default btn-block" data-menu-style="dropdown-blue">&ndash;&gt;-->
+                        <!--<div class="dropdown">-->
+                            <!--{% for value, displayable in models.rev_status_choices.choices %}-->
+                            <!--<option value="{{value}}"> {{ displayable }} </option>-->
+                            <!--{% endfor %}-->
+                        <!--</div>-->
+                    <!--</select>-->

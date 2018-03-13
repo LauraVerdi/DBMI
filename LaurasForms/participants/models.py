@@ -3,9 +3,9 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils import timezone
 
 
-rev_status_choices = [('Not Reviewed', 'NoReview'),
-                      ('Reviewed - Accepted', 'Accepted'),
-                      ('Reviewed - Not Accepted', 'NotAccepted')]
+rev_status_choices = [('NoReview', 'Not Reviewed'),
+                      ('Accepted', 'Reviewed - Accepted'),
+                      ('NotAccepted', 'Reviewed - Not Accepted')]
 
 
 class ParticipantInfo(models.Model):

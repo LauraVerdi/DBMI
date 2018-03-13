@@ -20,6 +20,20 @@ nav a{
     background-color: gray;
     color: white;
 }
+
+option.Accepted{
+    color: #008000;
+    background-color: #008000;
+}
+option.NotAccepted{
+    color: #ff0000;
+    background-color: #ff0000;
+}
+option.NoReview {
+    color: #808080;
+    background-color: #808080;
+}
+
 .Accepted a{
     background-color: #008000;
 }

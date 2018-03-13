@@ -26,12 +26,16 @@
                 <td> {{ p.participant_siblings }} </td>
                 <td class="left">
                     {% for line in p.environmental_exposures.splitlines %}
-                        {{ line }} <br>
+                        {% if line != "" %}
+                            {{ line }} <br>
+                        {% endif %}
                     {% endfor %}
                 </td>
                 <td class="left">
                     {% for line in p.genetic_mutations.splitlines %}
-                        {{ line }} <br>
+                        {% if line != "" %}
+                            {{ line }} <br>
+                        {% endif %}
                     {% endfor %}
                 </td>
                 <td>

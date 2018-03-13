@@ -25,12 +25,12 @@
                 <td> {{ p.participant_age }} </td>
                 <td> {{ p.participant_siblings }} </td>
                 <td class="left">
-                    {% for line in p.env_exposures.splitlines %}
+                    {% for line in p.environmental_exposures.splitlines %}
                         {{ line }} <br>
                     {% endfor %}
                 </td>
                 <td class="left">
-                    {% for line in p.gen_mutations.splitlines %}
+                    {% for line in p.genetic_mutations.splitlines %}
                         {{ line }} <br>
                     {% endfor %}
                 </td>
@@ -38,7 +38,7 @@
                     <form method="POST">{% csrf_token %}
                         <select id="dropdown" name={{p.participant_name}} name="rev_status" onChange="this.form.submit()">
                             {% for i, j in choices %}
-                                {% if i == p.rev_status %}
+                                {% if i == p.review_status %}
                                     <option selected class={{j}}> {{ i }} </option>
                                 {% else %}
                                     <option class={{j}}> {{ i }} </option>
@@ -48,13 +48,13 @@
                     </form>
                 </td>
                 <td>
-                    {% if p.rev_status == 'Reviewed - Accepted' %}
-                        <nav class="Accepted"><a href = ""> {{ p.rev_status }} </a></nav>
+                    {% if p.review_status == 'Reviewed - Accepted' %}
+                        <nav class="Accepted"><a href = ""> {{ p.review_status }} </a></nav>
                     {% else %}
-                        {% if p.rev_status == 'Reviewed - Not Accepted' %}
-                            <nav class="NotAccepted"><a href = ""> {{ p.rev_status }} </a></nav>
+                        {% if p.review_status == 'Reviewed - Not Accepted' %}
+                            <nav class="NotAccepted"><a href = ""> {{ p.review_status }} </a></nav>
                         {% else %}
-                            <nav class="NoReview"><a href = ""> {{ p.rev_status }} </a></nav>
+                            <nav class="NoReview"><a href = ""> {{ p.review_status }} </a></nav>
                         {% endif %}
                     {% endif %}
                 </td>

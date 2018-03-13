@@ -6,4 +6,9 @@ class AddParticipantForm(forms.ModelForm):
 
     class Meta:
         model = ParticipantInfo
-        fields = ('participant_name', 'participant_age', 'participant_siblings', 'env_exposures', 'gen_mutations', 'rev_status')
+        fields = ('participant_name',
+                  'participant_age',
+                  'participant_siblings',
+                  'environmental_exposures',
+                  'genetic_mutations',
+                  'review_status')

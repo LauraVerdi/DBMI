@@ -19,7 +19,7 @@ def add_participant(request):
 
 
 def update_rev_status(name, new_rev_status):
-    ParticipantInfo.objects.filter(participant_name__icontains=name).update(rev_status=new_rev_status)
+    ParticipantInfo.objects.filter(participant_name__icontains=name).update(review_status=new_rev_status)
     return
 
 
@@ -31,4 +31,5 @@ def list_participants(request):
             if name != 'csrfmiddlewaretoken':
                 update_rev_status(name, request.POST.get(name))
 
-    return render(request, 'participants/list_participants.html', {'participant': participant, 'choices': rev_status_choices})
+    return render(request, 'participants/list_participants.html',
+                  {'participant': participant, 'choices': rev_status_choices})

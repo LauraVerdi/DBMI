@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 rev_status_choices = [('Not Reviewed', 'NoReview'),
@@ -8,17 +9,17 @@ rev_status_choices = [('Not Reviewed', 'NoReview'),
 
 
 class ParticipantInfo(models.Model):
-    participant_name = models.CharField(max_length=50, primary_key=True)
-    participant_age = models.PositiveIntegerField()
+    participant_name = models.CharField(max_length=50,primary_key=True)
+    participant_age = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(120)])
     participant_siblings = models.CharField(
         max_length=3,
         choices=(('Yes', 'Yes'),
                  ('No', 'No')),
         default='No',
     )
-    env_exposures = models.TextField()
-    gen_mutations = models.TextField()
-    rev_status = models.CharField(
+    environmental_exposures = models.TextField()
+    genetic_mutations = models.TextField()
+    review_status = models.CharField(
         max_length=23,
         choices=rev_status_choices,
         default='Not Reviewed',
@@ -27,4 +28,5 @@ class ParticipantInfo(models.Model):
 
     def __str__(self):
         return self.participant_name
+
 

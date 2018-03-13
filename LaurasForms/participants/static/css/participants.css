@@ -1,6 +1,5 @@
 h1 {
     color: #FCA205;
-    font-family: 'Lobster';
 }
 body {
     padding-left: 15px;
@@ -18,14 +17,17 @@ nav a{
     padding: 7px 10px;
     border-radius: 5px;
     margin: 2%;
-    background-color: purple;
+    background-color: gray;
     color: white;
 }
-.Green a{
-    background-color: green;
+.Accepted a{
+    background-color: #008000;
 }
-.Red a{
-    background-color: red;
+.NotAccepted a{
+    background-color: #ff0000;
+}
+.NoReview a{
+    background-color: #808080;
 }
 
 table{
@@ -36,13 +38,13 @@ table{
 }
 
 th{
-  background-color: purple;
+  background-color: #3c3a3a;
   color: #ffffff;
   font-family: Arial, san-serif;
   font-size: small;
   text-align: center;
   padding: 10px;
-  border-bottom: 2px solid #25D12A;
+  border-bottom: 2px solid green;
 }
 th:first-child{
   text-align: left;
@@ -53,8 +55,8 @@ th:last-child{
 }
 
 td{
-  background-color: #CFFDD1;
-  color: #686B68;
+  background-color: #d6d8d6;
+  color: #1c1c1c;
   font-family: arial, san-serif;
   font-size: small;
   padding: 10px;
@@ -63,8 +65,8 @@ td{
   opacity: .8;
 }
 .left {
-  background-color: #CFFDD1;
-  color: #686B68;
+  background-color: #d6d8d6;
+  color: #1c1c1c;
   font-family: arial, san-serif;
   font-size: small;
   padding: 10px;
@@ -80,4 +82,28 @@ td:hover{
 }
 tr:hover{
   opacity: 1;
+}
+label {
+    vertical-align: top;
+    display: block;
+    float: left;
+    width: 130px;
+}
+textarea {
+    height: 10em;
+    width: 50em;
+}
+#id_participant_name {
+    width: 31em;
+}
+#id_participant_age {
+    width:5em
+}
+input[type=submit] {
+    font-size: medium;
+    margin-left: 100px;
+    margin-top: 30px;
+    background: #50ab54de;
+    padding:10px;
+    border-radius: 5px;
 }

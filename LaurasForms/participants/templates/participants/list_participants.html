@@ -41,7 +41,7 @@
                 <td>
                     <form method="POST">{% csrf_token %}
                         <select id="dropdown" name='{{p.participant_name}}' name="rev_status" onChange="this.form.submit()">
-                            {% for j, i in choices %}
+                            {% for i, j in choices %}
                                 {% if i == p.review_status %}
                                     <option selected class={{j}}> {{ i }} </option>
                                 {% else %}
